@@ -18,6 +18,12 @@ if (!isObject(ExampleMod))
 // LiFx expect each mod to be it's own unique package
 package ExampleMod
 {
+  // Returns a string as a version, LiFx will look for this specific function to output version to new connecting players
+  // Takes no parameters, is a reserved function for LiFx compatability.
+  function ExampleMod::version() {
+    return "v1.0.0" 
+  }
+  
   // The setup method is required, and will be looked for by the framework
   // This is where you tell the framework, which hooks you use and what object types you have added, so that the framework can call your code at the appropiate time
   function ExampleMod::setup() {
@@ -38,7 +44,8 @@ package ExampleMod
 	*/
     LiFx::registerObjectsTypes(ExampleMod::ObjectsTypesBazaar(), ExampleMod);
   }
-
+  
+  // Example function references from setup above, this code will execute when the hook is called by the LiFx framework
   function ExampleMod::onSpawn(%this, %client) {
     echo(%this.getName() SPC %client.getName());
     
