@@ -24,7 +24,7 @@ package ExampleMod
     return "v1.0.0" 
   }
   
-  // The setup method is required, and will be looked for by the framework
+  // The setup method is required, and will be looked for by the framework, if it doesn't have it your mod will not execute
   // This is where you tell the framework, which hooks you use and what object types you have added, so that the framework can call your code at the appropiate time
   function ExampleMod::setup() {
     // Register callback hooks, do not run any form of code that does anything here, just register the hook
@@ -42,7 +42,7 @@ package ExampleMod
     * Parameter 1: The function including scope to your objectstypes definition
     * Parameter 2: The package name of your mod
 	*/
-    LiFx::registerObjectsTypes(ExampleMod::ObjectsTypesBazaar(), ExampleMod);
+    LiFx::registerObjectsTypes(ExampleMod::ObjectsTypesExampleBuilding(), ExampleMod);
   }
   
   // Example function references from setup above, this code will execute when the hook is called by the LiFx framework
@@ -92,7 +92,3 @@ package ExampleMod
 // This command is from Torque, and activates your package so that the engine can reference it
 // This is required for your mod to work, and have the code loaded in torque engine.
 activatePackage(ExampleMod);
-
-// This registers your setup method, to the framework similar to how you register callbacks otherwise inside your setup function of the package
-// It is subject to change and may later be removed for automation purposes
-LiFx::registerCallback($LiFx::hooks::mods, setup, ExampleMod);
